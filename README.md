@@ -17,10 +17,11 @@ The `Filter` component is used to provide a filtering interface for data in the 
 Here is an example of how to use the `Filter` component:
 
 ```jsx
-import { Filter } from './Filter';
+import { Filter } from "solar-kit"
 
 function MyComponent() {
-  const [open, setOpen] = React.useState(false);
+  // Enable Disable state from Button, initial set as enable to check how filter looks
+  const [open, setOpen] = React.useState(true);
 
   const handleApplyFilters = (filters) => {
     console.log(filters);
@@ -78,3 +79,6 @@ function MyComponent() {
     />
   );
 }
+```
+## Filter Demo UI
+![Filter Component](./asset/image/filter.png)
