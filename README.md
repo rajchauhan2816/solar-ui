@@ -1,36 +1,80 @@
-# Create React UI Lib
+# Solar Kit
+Advanced UI made using Ant Design for React.
 
-A CLI tool that bootstraps simple [Vite](https://vitejs.dev/) template for instant [React](https://reactjs.org/) UI library development.
+# Filter Component
 
-- Unopinionated: no default styling, ESLint, pre-commit hooks — bring your own stuff if you need it.
-- Type definitions are extracted using [vite-plugin-dts](https://github.com/qmhc/vite-plugin-dts).
-- Bundles to ES and UMD modules, generates sourcemaps.
-- Offers [Storybook](https://storybook.js.org/) or [Ladle](https://ladle.dev/) for docs which are easily deployed as GitHub pages.
+The `Filter` component is used to provide a filtering interface for data in the application.
 
-## Getting started
+## Props
 
-Run the command:
+- `filters`: An array of filter configurations. Each configuration should be an object with properties that define the filter.
+- `filtersCallback`: A function that is called when the filters are applied. The function should take the applied filters as its argument.
+- `open`: A boolean that controls whether the filter interface is open or closed.
+- `setOpen`: A function that is called to open or close the filter interface. The function should take a boolean as its argument.
 
-```shell
-npm create react-ui-lib@latest
-```
+## Usage
 
-## Publishing the library
+Here is an example of how to use the `Filter` component:
 
-1. Build the package: `npm run build`
-2. Open `package.json`, update package description, author, repository, remove `"private": true`.
-3. Run `npm publish`
+```jsx
+import { Filter } from './Filter';
 
-## Publishing docs to GitHub pages
+function MyComponent() {
+  const [open, setOpen] = React.useState(false);
 
-Storybook or Ladle static is built to `docs` directory which is under git. To publish it to GitHub Pages do this:
+  const handleApplyFilters = (filters) => {
+    console.log(filters);
+  };
 
-- Publish this repo to GitHub.
-- Run `npm run build-docs`, commit `docs` folder and push.
-- [Create a separate GitHub Pages repo](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-a-repository-for-your-site) if you haven't yet.
-- [Set up GitHub pages for this project](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site) to build from `docs` folder from `main` branch.
-  - To do this go to this repo's settings and open `Pages` section (menu on the left side). Select `Source` -> `Deploy from a branch`, select `Branch` -> `main` and `/docs` folder.
-
-## Feedback
-
-[Tell me](https://github.com/mlshv/create-react-ui-lib/issues/new) about your experience with Create React UI Lib. [Support the project](https://github.com/mlshv/create-react-ui-lib) by giving it a start on GitHub.
+  return (
+    <Filter
+      filters={[
+        {
+          id: 'email',
+          label: 'Email or Name',
+          placeholder: 'Enter Email or Name',
+          type: 'TEXT-INPUT',
+        },
+        {
+          id: 'status',
+          label: 'Status',
+          placeholder: 'Select Status',
+          type: 'SELECT',
+          options: [
+            { label: 'Pending', value: 'PENDING' },
+            { label: 'Done', value: 'DONE' },
+          ],
+        },
+        {
+          id: 'user_email',
+          label: 'User Email',
+          placeholder: 'Search Email',
+          type: 'SELECT-REMOTE',
+          remoteOptions: async (search) => {
+            console.log('search', search);
+            // Mocked response
+            return [
+              { label: 'user1@example.com', value: 'user1@example.com' },
+              { label: 'user2@example.com', value: 'user2@example.com' },
+            ];
+          },
+        },
+        {
+          id: 'date',
+          label: 'Date',
+          placeholder: 'Select Date',
+          type: 'DATE',
+        },
+        {
+          id: 'date_range',
+          label: 'Date Range',
+          placeholder: 'Select Date Range',
+          type: 'DATE-RANGE',
+        },
+      ]}
+      filtersCallback={handleApplyFilters}
+      open={open}
+      setOpen={setOpen}
+    />
+  );
+}

@@ -1,14 +1,13 @@
 {
-  "name": "solar-ui",
-  "description": "Template to quick-start React library development with TypeScript.",
-  "private": true,
+  "name": "solar-kit",
+  "description": "Advanced Component Library for React using AntD",
   "version": "1.0.0",
   "type": "module",
-  "author": "Your Name <your-email@example.com>",
+  "author": "Raj Kumar Chauhan rajchauhan2816@gmail.com",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mlshv/create-react-ui-lib.git"
+    "url": "git+https://github.com/rajchauhan2816/solar-ui.git"
   },
   "exports": {
     ".": {
