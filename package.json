@@ -9,6 +9,13 @@
     "type": "git",
     "url": "git+https://github.com/rajchauhan2816/solar-ui.git"
   },
+  "keywords": [
+    "antd",
+    "filter",
+    "react",
+    "react-component",
+    "ui-library"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
